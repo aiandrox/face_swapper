@@ -1,6 +1,13 @@
 <div id="<%= dom_id original_photo %>">
   <p>
     <strong>Photo:</strong>
-    <%= image_tag personal_photo.photo %>
+    <%= image_tag original_photo.photo %>
   </p>
+
+  <% if original_photo.processed_photo %>
+    <p>
+      <strong>Processed Photo:</strong>
+      <%= image_tag original_photo.processed_photo.photo %>
+    </p>
+  <% end %>
 </div>

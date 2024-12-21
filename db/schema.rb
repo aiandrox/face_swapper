@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_21_153332) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_21_154850) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -53,6 +53,14 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_21_153332) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "processed_photos", force: :cascade do |t|
+    t.bigint "original_photo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["original_photo_id"], name: "index_processed_photos_on_original_photo_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "processed_photos", "original_photos"
 end
