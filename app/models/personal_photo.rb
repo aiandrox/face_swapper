@@ -1,0 +1,2 @@
+class PersonalPhoto < ApplicationRecord
+end

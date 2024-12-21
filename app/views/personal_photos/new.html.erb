@@ -1,0 +1,11 @@
+<% content_for :title, "New personal photo" %>
+
+<h1>New personal photo</h1>
+
+<%= render "form", personal_photo: @personal_photo %>
+
+<br>
+
+<div>
+  <%= link_to "Back to personal photos", personal_photos_path %>
+</div>

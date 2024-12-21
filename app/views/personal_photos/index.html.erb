@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Personal photos" %>
+
+<h1>Personal photos</h1>
+
+<div id="personal_photos">
+  <% @personal_photos.each do |personal_photo| %>
+    <%= render personal_photo %>
+    <p>
+      <%= link_to "Show this personal photo", personal_photo %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New personal photo", new_personal_photo_path %>
