@@ -53,6 +53,6 @@ class PersonalPhotosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def personal_photo_params
-      params.expect(personal_photo: [ :name, :photo ])
+      params.expect(personal_photo: [ :name, :photo, :icon ])
     end
 end

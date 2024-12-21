@@ -3,11 +3,15 @@
     <strong>Name:</strong>
     <%= personal_photo.name %>
   </p>
-  <% if personal_photo.photo.attached? %>
-    <p>
-      <strong>Photo:</strong>
-      <%= image_tag personal_photo.photo %>
-    </p>
-  <% end %>
+
+  <p>
+    <strong>Photo:</strong>
+    <%= image_tag personal_photo.photo %>
+  </p>
+
+  <p>
+    <strong>Icon:</strong>
+    <%= image_tag personal_photo.icon %>
+  </p>
 
 </div>
