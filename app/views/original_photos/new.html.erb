@@ -1,0 +1,11 @@
+<% content_for :title, "New original photo" %>
+
+<h1>New original photo</h1>
+
+<%= render "form", original_photo: @original_photo %>
+
+<br>
+
+<div>
+  <%= link_to "Back to original photos", original_photos_path %>
+</div>

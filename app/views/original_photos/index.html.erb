@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Original photos" %>
+
+<h1>Original photos</h1>
+
+<div id="original_photos">
+  <% @original_photos.each do |original_photo| %>
+    <%= render original_photo %>
+    <p>
+      <%= link_to "Show this original photo", original_photo %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New original photo", new_original_photo_path %>
