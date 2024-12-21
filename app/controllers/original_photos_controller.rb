@@ -24,6 +24,7 @@ class OriginalPhotosController < ApplicationController
     @original_photo = OriginalPhoto.new(original_photo_params)
 
     if @original_photo.save
+      @original_photo.exec_rekognition
       redirect_to @original_photo, notice: "Original photo was successfully created."
     else
       render :new, status: :unprocessable_entity
