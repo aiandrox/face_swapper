@@ -8,7 +8,9 @@
   <% @personal_photos.each do |personal_photo| %>
     <p>
       <%= link_to personal_photo.name, personal_photo %>
-      <%= image_tag personal_photo.icon.variant(resize:'50x50').processed %>
+      <% if personal_photo.icon.attached? %>
+        <%= image_tag personal_photo.icon.variant(resize:'50x50').processed %>
+      <% end %>
     </p>
   <% end %>
 </div>
