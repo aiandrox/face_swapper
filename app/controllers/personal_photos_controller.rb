@@ -1,4 +1,5 @@
 class PersonalPhotosController < ApplicationController
+  before_action :site_http_basic_authenticate_with
   before_action :set_personal_photo, only: %i[ show edit update destroy ]
 
   # GET /personal_photos
