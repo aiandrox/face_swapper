@@ -4,14 +4,17 @@
     <%= personal_photo.name %>
   </p>
 
-  <p>
-    <strong>Photo:</strong>
-    <%= image_tag personal_photo.photo %>
-  </p>
+  <% if personal_photo.photo.attached? %>
+    <p>
+      <strong>Photo:</strong>
+      <%= image_tag personal_photo.photo %>
+    </p>
+  <% end %>
 
-  <p>
-    <strong>Icon:</strong>
-    <%= image_tag personal_photo.icon %>
-  </p>
-
+  <% if personal_photo.icon.attached? %>
+    <p>
+      <strong>Icon:</strong>
+      <%= image_tag personal_photo.icon %>
+    </p>
+  <% end %>
 </div>

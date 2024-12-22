@@ -23,7 +23,10 @@ class PersonalPhotosController < ApplicationController
   def create
     @personal_photo = PersonalPhoto.new(personal_photo_params)
 
+
     if @personal_photo.save
+      processed_icon = PersonalPhoto.process_icon(params[:personal_photo][:icon])
+      @personal_photo.icon.attach(io: processed_icon, filename: "#{@personal_photo.id}_#{Time.zone.now.to_i}.png", content_type: "image/png")
       redirect_to @personal_photo, notice: "Personal photo was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -33,6 +36,10 @@ class PersonalPhotosController < ApplicationController
   # PATCH/PUT /personal_photos/1
   def update
     if @personal_photo.update(personal_photo_params)
+      if params[:personal_photo][:icon].present?
+        processed_icon = PersonalPhoto.process_icon(params[:personal_photo][:icon])
+        @personal_photo.icon.attach(io: StringIO.new(processed_icon), filename: "#{@personal_photo.id}_#{Time.zone.now.to_i}.png", content_type: "image/png")
+      end
       redirect_to @personal_photo, notice: "Personal photo was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
@@ -53,6 +60,6 @@ class PersonalPhotosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def personal_photo_params
-      params.expect(personal_photo: [ :name, :photo, :icon ])
+      params.expect(personal_photo: [ :name, :photo ])
     end
 end
