@@ -6,9 +6,8 @@
 
 <div id="original_photos">
   <% @original_photos.each do |original_photo| %>
-    <%= render original_photo %>
     <p>
-      <%= link_to "Show this original photo", original_photo %>
+      <%= link_to original_photo.id, original_photo %>
     </p>
   <% end %>
 </div>

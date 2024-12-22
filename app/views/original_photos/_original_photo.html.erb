@@ -1,9 +1,4 @@
 <div id="<%= dom_id original_photo %>">
-  <p>
-    <strong>Photo:</strong>
-    <%= image_tag original_photo.photo %>
-  </p>
-
   <% if original_photo.processed_photo.attached? %>
     <p>
       <strong>Processed Photo:</strong>
