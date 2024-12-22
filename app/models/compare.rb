@@ -37,9 +37,10 @@ class Compare
         position = face_match.face.bounding_box
         image.combine_options do |c|
           icon_height = height * position.height
-          icon_width = width * position.width
-          face_position_left = position.left * width
+          icon_width = icon_height
           face_position_top = position.top * height
+          face_center = position.left + position.width / 2
+          face_position_left = face_center * width - icon_width / 2
           c.draw "image Over #{face_position_left},#{face_position_top} #{icon_width},#{icon_height} '#{icon.path}'"
         end
       end
