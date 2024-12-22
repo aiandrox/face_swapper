@@ -34,6 +34,7 @@ class OriginalPhotosController < ApplicationController
   # PATCH/PUT /original_photos/1
   def update
     if @original_photo.update(original_photo_params)
+      @original_photo.exec_rekognition
       redirect_to @original_photo, notice: "Original photo was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity

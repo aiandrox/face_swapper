@@ -6,9 +6,10 @@ class OriginalPhoto < ApplicationRecord
 
   def exec_rekognition
     image = Compare.new(original_photo: self).compare_face_image
+    filename = "#{photo.filename.to_s.split('.')[0]}_#{Time.now.strftime('%Y%m%d%H%M%S')}.png"
     processed_photo.attach(
       io: StringIO.new(image.to_blob),
-      filename: "#{photo.filename.split('.')[0]}_#{Time.now.strftime('%Y%m%d%H%M%S')}.png",
+      filename:,
       content_type: "image/png"
     )
   end

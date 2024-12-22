@@ -4,7 +4,7 @@
     <%= image_tag original_photo.photo %>
   </p>
 
-  <% if original_photo.processed_photo %>
+  <% if original_photo.processed_photo.attached? %>
     <p>
       <strong>Processed Photo:</strong>
       <%= image_tag original_photo.processed_photo %>

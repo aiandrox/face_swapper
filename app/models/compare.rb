@@ -16,35 +16,31 @@ class Compare
         source_image: {
           s3_object: {
             bucket: @bucket_name,
-            name: @original_photo.photo.key
+            name: personal_photo.photo.key
           }
         },
         target_image: {
           s3_object: {
             bucket: @bucket_name,
-            name: personal_photo.photo.key
+            name: @original_photo.photo.key
           }
         },
         similarity_threshold: 80
       }
       response = @rekognition_client.compare_faces attrs
-      face_matches = response.face_matches.each do |face_match|
-        position   = face_match.face.bounding_box
-        similarity = face_match.similarity
-        puts "The face at: #{position.left}, #{position.top} matches with #{similarity} % confidence"
-      end
+      next if response.face_matches.blank?
 
       s3_icon = @s3_client.get_object(bucket: @bucket_name, key: personal_photo.icon.key)
       icon = MiniMagick::Image.read(s3_icon.body)
 
-      face_matches.each do |face_match|
+      response.face_matches.each do |face_match|
         position = face_match.face.bounding_box
         image.combine_options do |c|
+          icon_height = height * position.height
+          icon_width = width * position.width
           face_position_left = position.left * width
           face_position_top = position.top * height
-          icon_width = width * position.width
-          icon_height = height * position.height
-          c.draw "image Over #{face_position_left},#{face_position_top} #{icon_width},#{icon_height} '#{icon}'"
+          c.draw "image Over #{face_position_left},#{face_position_top} #{icon_width},#{icon_height} '#{icon.path}'"
         end
       end
     end
