@@ -26,7 +26,7 @@ class PersonalPhotosController < ApplicationController
 
     if @personal_photo.save
       processed_icon = PersonalPhoto.process_icon(params[:personal_photo][:icon])
-      @personal_photo.icon.attach(io: processed_icon, filename: "#{@personal_photo.id}_#{Time.zone.now.to_i}.png", content_type: "image/png")
+      @personal_photo.icon.attach(io: StringIO.new(processed_icon), filename: "#{@personal_photo.id}_#{Time.zone.now.to_i}.png", content_type: "image/png")
       redirect_to @personal_photo, notice: "Personal photo was successfully created."
     else
       render :new, status: :unprocessable_entity
