@@ -7,14 +7,14 @@
   <% if personal_photo.photo.attached? %>
     <p>
       <strong>Photo:</strong>
-      <%= image_tag personal_photo.photo %>
+      <%= image_tag personal_photo.photo, width: "100%" %>
     </p>
   <% end %>
 
   <% if personal_photo.icon.attached? %>
     <p>
       <strong>Icon:</strong>
-      <%= image_tag personal_photo.icon %>
+      <%= image_tag personal_photo.icon, width: "100%" %>
     </p>
   <% end %>
 </div>

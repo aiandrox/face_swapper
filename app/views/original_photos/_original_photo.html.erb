@@ -1,8 +1,7 @@
 <div id="<%= dom_id original_photo %>">
   <% if original_photo.processed_photo.attached? %>
-    <p>
-      <strong>Processed Photo:</strong>
-      <%= image_tag original_photo.processed_photo %>
-    </p>
+    <div style="max-width: 100%">
+      <%= image_tag original_photo.processed_photo, width: "100%" %>
+    </div>
   <% end %>
 </div>

@@ -1,7 +1,10 @@
 class OriginalPhoto < ApplicationRecord
+  before_create -> { self.uuid = SecureRandom.uuid }
+
   has_one_attached :photo
   has_one_attached :processed_photo
 
+  validates :uuid, presence: true, uniqueness: true
   validates :photo, attached: true, processable_image: true, content_type: [ :png, :jpg, :jpeg ], size: { less_than: 10.megabytes }
 
   def exec_rekognition
@@ -12,5 +15,9 @@ class OriginalPhoto < ApplicationRecord
       filename:,
       content_type: "image/png"
     )
+  end
+
+  def to_param
+    uuid
   end
 end

@@ -6,9 +6,11 @@
 
 <div id="original_photos">
   <% @original_photos.each do |original_photo| %>
-    <p>
-      <%= link_to original_photo.id, original_photo %>
-    </p>
+    <% if original_photo.processed_photo.attached? %>
+      <p>
+        <%= link_to(image_tag(original_photo.processed_photo.variant(resize_to_fit: [500, 300]).processed), original_photo) %>
+      </p>
+    <% end %>
   <% end %>
 </div>
 
