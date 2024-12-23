@@ -4,7 +4,7 @@ class OriginalPhoto < ApplicationRecord
   has_one_attached :photo
   has_one_attached :processed_photo
 
-  validates :uuid, presence: true, uniqueness: true
+  validates :uuid, uniqueness: true
   validates :photo, attached: true, processable_image: true, content_type: [ :png, :jpg, :jpeg ], size: { less_than: 10.megabytes }
 
   def exec_rekognition

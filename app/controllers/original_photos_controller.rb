@@ -1,5 +1,6 @@
 class OriginalPhotosController < ApplicationController
-  before_action :set_original_photo, only: %i[ show edit update destroy ]
+  before_action :site_http_basic_authenticate_with, only: %i[ index ]
+  before_action :set_original_photo, only: %i[ show destroy ]
 
   # GET /original_photos
   def index
@@ -8,15 +9,6 @@ class OriginalPhotosController < ApplicationController
 
   # GET /original_photos/1
   def show
-  end
-
-  # GET /original_photos/new
-  def new
-    @original_photo = OriginalPhoto.new
-  end
-
-  # GET /original_photos/1/edit
-  def edit
   end
 
   # POST /original_photos
@@ -31,20 +23,10 @@ class OriginalPhotosController < ApplicationController
     end
   end
 
-  # PATCH/PUT /original_photos/1
-  def update
-    if @original_photo.update(original_photo_params)
-      @original_photo.exec_rekognition
-      redirect_to @original_photo, notice: "Original photo was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   # DELETE /original_photos/1
   def destroy
     @original_photo.destroy!
-    redirect_to original_photos_path, notice: "Original photo was successfully destroyed.", status: :see_other
+    redirect_to root_path, notice: "Photo was successfully destroyed.", status: :see_other
   end
 
   private
