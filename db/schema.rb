@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_23_004642) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_23_113236) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -45,7 +45,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_23_004642) do
   create_table "original_photos", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "uuid"
+    t.string "uuid", null: false
     t.index ["uuid"], name: "index_original_photos_on_uuid", unique: true
   end
 
