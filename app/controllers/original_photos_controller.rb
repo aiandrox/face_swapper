@@ -17,7 +17,7 @@ class OriginalPhotosController < ApplicationController
 
     if @original_photo.save
       @original_photo.exec_rekognition
-      redirect_to @original_photo, notice: "Original photo was successfully created."
+      redirect_to @original_photo, notice: "画像を変換しました"
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +26,7 @@ class OriginalPhotosController < ApplicationController
   # DELETE /original_photos/1
   def destroy
     @original_photo.destroy!
-    redirect_to root_path, notice: "Photo was successfully destroyed.", status: :see_other
+    redirect_to root_path, notice: "画像を削除しました", status: :see_other
   end
 
   private
