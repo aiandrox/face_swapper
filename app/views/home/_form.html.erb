@@ -1,0 +1,21 @@
+<%= form_with(model: original_photo) do |form| %>
+  <% if original_photo.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(original_photo.errors.count, "error") %> prohibited this original_photo from being saved:</h2>
+
+      <ul>
+        <% original_photo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.file_field :photo, accept: 'image/png,image/jpeg,image/jpg' %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
